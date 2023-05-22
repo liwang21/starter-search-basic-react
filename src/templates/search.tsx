@@ -1,3 +1,5 @@
+// src/templates/search.tsx
+
 import * as React from "react";
 import {
   Template,
@@ -8,6 +10,21 @@ import {
   TemplateProps,
 } from "@yext/pages";
 import "../index.css";
+import {
+  SearchHeadlessProvider,
+  provideHeadless,
+  HeadlessConfig
+} from "@yext/search-headless-react";
+import {
+  SearchBar,
+  StandardCard,
+  VerticalResults,
+  SpellCheck,
+  ResultsCount,
+  Pagination,
+  } from "@yext/search-ui-react";
+
+import CustomCard from "../components/CustomCard";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return "search";
@@ -17,14 +34,43 @@ export const getHeadConfig: GetHeadConfig<
   TemplateRenderProps
 > = (): HeadConfig => {
   return {
-    title: `Turtlehead Tacos Search`,
+    //Update title to match Search starter
+    title: `Basic Search Starter`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
   };
 };
 
+const headlessConfig: HeadlessConfig = {
+  //replace the following with Your API Key Here
+  apiKey: "90cf8922bb01441f9c69bbedbb57b32e",
+  experienceKey: "search-basic",
+  locale: "en",
+  verticalKey: "faqs"
+};
+
+const searcher = provideHeadless(headlessConfig);
+
 const Search: Template<TemplateRenderProps> = () => {
-  return <>Your Code Here!</>;
+  return (
+    <SearchHeadlessProvider searcher={searcher}>
+      <div className="px-4 py-8">
+        <div className="mx-auto flex max-w-5xl flex-col">
+          <h1 className="pb-4 text-center text-3xl font-bold text-blue-700">
+            Basic Search Starter
+          </h1>
+          <SearchBar placeholder="Search for FAQs"/>
+          <SpellCheck />
+          <ResultsCount />
+          <VerticalResults
+            CardComponent={CustomCard}
+            displayAllOnNoResults={false}
+          />
+        </div>
+        <Pagination />
+      </div>
+    </SearchHeadlessProvider>
+  );
 };
 
 export default Search;
