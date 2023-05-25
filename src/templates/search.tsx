@@ -57,9 +57,9 @@ const Search: Template<TemplateRenderProps> = () => {
       <div className="px-4 py-8">
         <div className="mx-auto flex max-w-5xl flex-col">
           <h1 className="pb-4 text-center text-3xl font-bold text-blue-700">
-            Basic Search Starter
+            Basic Search
           </h1>
-          <SearchBar placeholder="Search for FAQs"/>
+          <SearchBar placeholder="Search for FAQs about Turtlehead Tacos!"/>
           <SpellCheck />
           <ResultsCount />
           <VerticalResults
@@ -67,7 +67,12 @@ const Search: Template<TemplateRenderProps> = () => {
             displayAllOnNoResults={false}
           />
         </div>
-        <Pagination />
+        <Pagination 
+          customCssClasses={{
+            icon: "text-stone-900",
+            label: "text-stone-900",
+            selectedLabel: "text-red-700 border-blue-700 bg-blue-100",
+          }}/>
       </div>
     </SearchHeadlessProvider>
   );

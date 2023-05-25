@@ -50,6 +50,7 @@ export default interface Faq {
 	c_activeOnAnswers?: boolean,
 	c_primaryCTA?: C_primaryCTA,
 	c_secondaryCTA?: C_secondaryCTA,
+	c_category?: string,
 	keywords?: string[],
 	id: string,
 	timezone?: any,
