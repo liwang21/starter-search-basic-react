@@ -16,8 +16,8 @@ import {
   HeadlessConfig
 } from "@yext/search-headless-react";
 
-import UniversalBasicSearch from "../components/UniversalResults";
-import VerticalBasicSearch from "../components/VerticalResults";
+import UniversalBasicSearch from "../components/UniversalSearch";
+import BasicSearch from "../components/BasicSearch";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return "search";
@@ -47,7 +47,7 @@ const Search: Template<TemplateRenderProps> = () => {
   return (
     <SearchHeadlessProvider searcher={searcher}>
      {/* <UniversalBasicSearch /> */}
-     <VerticalBasicSearch />
+     <BasicSearch />
     </SearchHeadlessProvider>
   );
 };
