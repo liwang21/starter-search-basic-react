@@ -16,7 +16,6 @@ import {
   HeadlessConfig
 } from "@yext/search-headless-react";
 
-import UniversalBasicSearch from "../components/UniversalSearch";
 import BasicSearch from "../components/BasicSearch";
 
 export const getPath: GetPath<TemplateProps> = () => {
@@ -35,7 +34,7 @@ export const getHeadConfig: GetHeadConfig<
 };
 
 const headlessConfig: HeadlessConfig = {
-  //replace the following with Your API Key Here
+  //Replace the following with Your Search Experience API Key here
   apiKey: "90cf8922bb01441f9c69bbedbb57b32e",
   experienceKey: "search-basic",
   locale: "en"
@@ -46,7 +45,6 @@ const searcher = provideHeadless(headlessConfig);
 const Search: Template<TemplateRenderProps> = () => {
   return (
     <SearchHeadlessProvider searcher={searcher}>
-     {/* <UniversalBasicSearch /> */}
      <BasicSearch />
     </SearchHeadlessProvider>
   );

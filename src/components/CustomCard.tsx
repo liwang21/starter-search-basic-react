@@ -2,15 +2,8 @@
 
 import * as React from "react";
 import { CardProps, useCardAnalyticsCallback } from "@yext/search-ui-react";
-import { provideSearchAnalytics } from "@yext/analytics";
 
 import FAQ from "../types/faqs"; //replace with the vertical type this custom card applies to
-
-const searchAnalytics = provideSearchAnalytics({
-    experienceKey: "search-basic",
-    experienceVersion: "PRODUCTION",
-    businessId: 4032765, //this can be found in the URL of your Yext admin account
-});
 
 const CustomCard = ({
     result,

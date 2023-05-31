@@ -1,44 +1,47 @@
-// src/components/UniversalResults.tsx
+// src/components/UniversalSearch.tsx
 
 import * as React from "react";
 import {
-  SearchBar,
   UniversalResults,
   SpellCheck
   } from "@yext/search-ui-react";
 
 import CustomCard from "./CustomCard";
-import { useSearchState } from "@yext/search-headless-react";
-import Tab from "./Tab";
+import { useSearchState} from "@yext/search-headless-react";
 
 const UniversalSearch = (): JSX.Element => {
 
-  {/* set your Universal Search Bar placeholder text here */}
-  const universalPlaceholder = "Search anything Turtlehead Tacos related!"  
+    React.useEffect(() => {
+      console.log(universalResultsCount)
+    })
+
   const mostRecentSearch = useSearchState(
-        (state) => state.query.mostRecentSearch
-        );
+    (state) => state.query.mostRecentSearch
+    );
+    const universalResultsCount = useSearchState((state) => state.universal.verticals?.length);
 
   return (
       <div className="universal-search">
-        <SearchBar placeholder={universalPlaceholder}/>
-          <div className="universal-tab flex justify-left">
-            <Tab verticalKey="" verticalLabel="All"/>
-            <div className="vertical-tab ml-4 mb-4"> 
-              <Tab verticalKey="faqs" verticalLabel="FAQs"/>
-            </div>
-          </div>
           <div className="spell-check">
             <SpellCheck/>
           </div>
-          <UniversalResults 
-            verticalConfigMap={{
-                faqs: {
-                    label: "FAQs",
-                    viewAllButton: true,
-                    CardComponent: CustomCard
-                },
-            }}/>
+            <UniversalResults 
+              verticalConfigMap={{
+                  faqs: {
+                      label: "FAQs",
+                      CardComponent: CustomCard
+                  },
+              }}/>
+          {mostRecentSearch && universalResultsCount === 0 && (
+            // provide a no results message for searches that return no results 
+            <div>
+              <p>
+                The search
+                <span className="mx-1 font-semibold">{mostRecentSearch}</span>
+                did not match any results.
+              </p>
+            </div>
+          )}
       </div>
   );
 };
