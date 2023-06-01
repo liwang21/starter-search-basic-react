@@ -11,10 +11,6 @@ import { useSearchState} from "@yext/search-headless-react";
 
 const UniversalSearch = (): JSX.Element => {
 
-    React.useEffect(() => {
-      console.log(universalResultsCount)
-    })
-
   const mostRecentSearch = useSearchState(
     (state) => state.query.mostRecentSearch
     );

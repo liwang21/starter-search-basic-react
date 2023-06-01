@@ -5,29 +5,29 @@ import {
   SearchBar
   } from "@yext/search-ui-react";
 
-  import { 
-    useSearchState
-   } from "@yext/search-headless-react";
+import { 
+  useSearchState
+  } from "@yext/search-headless-react";
 
-  import UniversalSearch from "./UniversalSearch";
-  import VerticalSearch from "./VerticalSearch";
-  import Tab from "./Tab"
+import UniversalSearch from "./UniversalSearch";
+import VerticalSearch from "./VerticalSearch";
+import Tab from "./Tab"
+
+//import consts
+import { VERTICALS } from "../common/consts";
 
 const BasicSearch = (): JSX.Element => {
   //retrieves the current vertical key 
-  const currentVertical = useSearchState((state) => state.vertical.verticalKey) ?? null;
+  const currentVertical = useSearchState((state) => state.vertical.verticalKey) ?? "";
 
-  const getPlaceholderText = () => {
-    if (currentVertical === "faqs") {
-      //search bar placeholder for FAQ verticals
-      return "Search for FAQs about Turtlehead Tacos!";
-    } else if (currentVertical === "[REPLACE ME]") {
-      //search bar placeholder for additional vertical
-      return "[REPLACE ME SEARCH BAR PLACEHOLDER]";
-    } else {
-      //search bar placeholder for universal search
-      return "Search anything Turtlehead Tacos related!";
-    }
+  const getPlaceholderText = (placeholders: any, currentVertical: any) => {
+    let placeholderText = '';
+    Object.keys(VERTICALS).forEach((key) => {
+      if (currentVertical === key) {
+        placeholderText = placeholders[key]?.placeholder
+      }
+  })
+    return placeholderText
   };
 
   return (
@@ -36,12 +36,14 @@ const BasicSearch = (): JSX.Element => {
           <h1 className="pb-4 text-center text-3xl font-bold text-blue-700">
             Basic Search
           </h1>
-          <SearchBar placeholder={getPlaceholderText()}/>
+          <SearchBar placeholder={getPlaceholderText(VERTICALS, currentVertical)}/>
           <div className="universal-tab flex justify-left">
-            <Tab verticalKey="" verticalLabel="All"/>
-            <div className="vertical-tab ml-4 mb-4"> 
-              <Tab verticalKey="faqs" verticalLabel="FAQs"/>
-            </div>
+          {Object.entries(VERTICALS).map(([key, value]) => (
+              <Tab 
+              key = {key}
+              verticalKey={key} 
+              verticalLabel={value.label} />
+          ))}
           </div>
           {currentVertical ? <VerticalSearch/> : <UniversalSearch />}
         </div>

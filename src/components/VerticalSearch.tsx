@@ -9,11 +9,11 @@ import {
   StandardFacets
   } from "@yext/search-ui-react";
 
-  import { 
-    useSearchState
-   } from "@yext/search-headless-react";
+import { 
+  useSearchState
+  } from "@yext/search-headless-react";
 
-  import CustomCard from "./CustomCard";
+import CustomCard from "./CustomCard";
 
 const VerticalSearch = (): JSX.Element => {
 

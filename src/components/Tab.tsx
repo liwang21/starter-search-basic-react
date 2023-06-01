@@ -21,7 +21,7 @@ const Tab = ({verticalKey, verticalLabel}:TabProps) => {
         //set vertical results limit
         searchActions.setVerticalLimit(5);
         
-        //execute universal query when the vertical key is an empty string
+        //execute universal query when the vertical key is universal
         if (verticalKey === "") {
             searchActions.setUniversal()
             searchActions.setUniversalLimit(universalLimits);
@@ -35,7 +35,7 @@ const Tab = ({verticalKey, verticalLabel}:TabProps) => {
     return (
         <div>
             <div
-                className={"tab border border-gray py-2 px-4 rounded-full hover:bg-gray-100 cursor-pointer"}
+                className={"tab border border-gray py-2 px-4 rounded-full ml-4 mb-4 hover:bg-gray-100 cursor-pointer"}
                 onClick={handleClick}
             >
                 {verticalLabel}
