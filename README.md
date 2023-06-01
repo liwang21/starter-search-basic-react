@@ -1,2 +1,2 @@
-# starter-search-basic-react-2
+# starter-search-basic-react
 Starter repository for Basic Search built on Search UI React
