@@ -15,6 +15,7 @@ import Tab from "./Tab"
 
 //import consts
 import { VERTICALS } from "../common/consts";
+import TabContainer from "./TabContainer";
 
 const BasicSearch = (): JSX.Element => {
   //retrieves the current vertical key 
@@ -37,14 +38,7 @@ const BasicSearch = (): JSX.Element => {
             Basic Search
           </h1>
           <SearchBar placeholder={getPlaceholderText(VERTICALS, currentVertical)}/>
-          <div className="universal-tab flex justify-left">
-          {Object.entries(VERTICALS).map(([key, value]) => (
-              <Tab 
-              key = {key}
-              verticalKey={key} 
-              verticalLabel={value.label} />
-          ))}
-          </div>
+          <TabContainer />
           {currentVertical ? <VerticalSearch/> : <UniversalSearch />}
         </div>
         
