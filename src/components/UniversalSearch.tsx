@@ -7,9 +7,12 @@ import {
   } from "@yext/search-ui-react";
 
 import CustomCard from "./CustomCard";
-import { useSearchState} from "@yext/search-headless-react";
+import { useSearchActions, useSearchState} from "@yext/search-headless-react";
+import { UNIVERSAL_LIMITS } from "../common/consts";
 
-const UniversalSearch = (): JSX.Element => {
+const UniversalSearch = () => {
+  const searchActions = useSearchActions();
+  searchActions.setUniversalLimit(UNIVERSAL_LIMITS);
 
   const mostRecentSearch = useSearchState(
     (state) => state.query.mostRecentSearch
@@ -17,7 +20,7 @@ const UniversalSearch = (): JSX.Element => {
     const universalResultsCount = useSearchState((state) => state.universal.verticals?.length);
 
   return (
-      <div className="universal-search">
+      <div className="universal-search py-4">
           <div className="spell-check">
             <SpellCheck/>
           </div>
@@ -27,6 +30,11 @@ const UniversalSearch = (): JSX.Element => {
                       label: "FAQs",
                       CardComponent: CustomCard
                   },
+                // uncomment below to add an additonal vertical configuration
+                //   verticalKey: {
+                //     label: "Vertical Name",
+                //     CardComponent: CustomCard
+                // },
               }}/>
           {mostRecentSearch && universalResultsCount === 0 && (
             // provide a no results message for searches that return no results 

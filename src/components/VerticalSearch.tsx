@@ -15,7 +15,7 @@ import {
 
 import CustomCard from "./CustomCard";
 
-const VerticalSearch = (): JSX.Element => {
+const VerticalSearch = () => {
 
     const mostRecentSearch = useSearchState(
         (state) => state.query.mostRecentSearch
@@ -24,7 +24,7 @@ const VerticalSearch = (): JSX.Element => {
         useSearchState((state) => state.vertical.resultsCount) ?? -1;
 
   return (
-      <div className="vertical-search">
+      <div className="vertical-search py-4">
           <div className="spell-check">
             <SpellCheck/>
           </div>

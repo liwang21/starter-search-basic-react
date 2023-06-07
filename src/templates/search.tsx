@@ -16,9 +16,9 @@ import {
   HeadlessConfig
 } from "@yext/search-headless-react";
 
-import { SEARCHER } from "../common/consts";
-
 import BasicSearch from "../components/BasicSearch";
+
+import {apiKey, experienceKey, locale, experienceVersion} from "../common/consts";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return "search";
@@ -34,6 +34,17 @@ export const getHeadConfig: GetHeadConfig<
     viewport: "width=device-width, initial-scale=1",
   };
 };
+
+export const SEARCHER = provideHeadless({
+  //Replace with Your Search Experience API Key here
+  apiKey: apiKey,
+  // comment in the verticalKey if you are building a vertical-only search experience
+  // verticalKey: verticalKey,
+  //Replace with Your Search Experience experience key here
+  experienceKey: experienceKey,
+  locale: locale,
+  experienceVersion: experienceVersion,
+});
 
 const Search: Template<TemplateRenderProps> = () => {
   return (

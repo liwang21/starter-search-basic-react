@@ -11,25 +11,11 @@ import {
 
 import UniversalSearch from "./UniversalSearch";
 import VerticalSearch from "./VerticalSearch";
-import Tab from "./Tab"
+import VerticalNav from "./VerticalNav";
 
-//import consts
-import { VERTICALS } from "../common/consts";
-import TabContainer from "./TabContainer";
-
-const BasicSearch = (): JSX.Element => {
+const BasicSearch = () => {
   //retrieves the current vertical key 
   const currentVertical = useSearchState((state) => state.vertical.verticalKey) ?? "";
-
-  const getPlaceholderText = (placeholders: any, currentVertical: any) => {
-    let placeholderText = '';
-    Object.keys(VERTICALS).forEach((key) => {
-      if (currentVertical === key) {
-        placeholderText = placeholders[key]?.placeholder
-      }
-  })
-    return placeholderText
-  };
 
   return (
       <div className="px-4 py-8">
@@ -37,8 +23,8 @@ const BasicSearch = (): JSX.Element => {
           <h1 className="pb-4 text-center text-3xl font-bold text-blue-700">
             Basic Search
           </h1>
-          <SearchBar placeholder={getPlaceholderText(VERTICALS, currentVertical)}/>
-          <TabContainer />
+          <SearchBar placeholder="Search"/>
+          <VerticalNav />
           {currentVertical ? <VerticalSearch/> : <UniversalSearch />}
         </div>
         
